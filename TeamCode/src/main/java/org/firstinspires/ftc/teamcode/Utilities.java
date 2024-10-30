@@ -9,5 +9,5 @@ public class Utilities {
     public static double clip(double input, double max, double min) {
         return Math.max(Math.min(input, max), min);
     }
-
+//
 }
