@@ -76,9 +76,9 @@ public class bruh extends OpMode {
                 telemetry.addData("Status", "Motor Running");
 
             } else if (gamepad2.x) {
-            erect.setTargetPosition(1100);
+            erect.setTargetPosition(1000);
             erect.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            if (erect.getCurrentPosition() < 1200 && erect.getCurrentPosition() > 1000) {
+            if (erect.getCurrentPosition() < 1050 && erect.getCurrentPosition() > 950) {
                 erect.setPower(0);
 
             } else {
