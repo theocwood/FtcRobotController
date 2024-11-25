@@ -17,8 +17,8 @@ public class bruh extends OpMode {
 
     drive driver ;
     DcMotor erect;
-    Servo extend, wrist, bucket, side;
-    CRServo intake;
+    Servo extend, wristL, wristR, bucket, side;
+    CRServo intakeL, intakeR;
     TouchSensor bottom;
 
     public bruh() {
@@ -30,12 +30,18 @@ public class bruh extends OpMode {
         driver = new drive(hardwareMap);
 
         extend = hardwareMap.get(Servo.class, "extend");
-        wrist = hardwareMap.get(Servo.class, "wrist");
-        intake = hardwareMap.get(CRServo.class, "intake");
+        wristL = hardwareMap.get(Servo.class, "wristL");
+        intakeL = hardwareMap.get(CRServo.class, "intakeL");
+        intakeR = hardwareMap.get(CRServo.class, "intakeR");
         bottom = hardwareMap.get(TouchSensor.class, "bottom");
         erect = hardwareMap.get(DcMotor.class, "erect");
         bucket = hardwareMap.get(Servo.class, "bucket");
         side = hardwareMap.get(Servo.class, "side");
+        wristR = hardwareMap.get(Servo.class,"wristR");
+
+        telemetry.addData("WristL Position", wristL.getPosition());
+        telemetry.addData("WristR Position", wristR.getPosition());
+        telemetry.update();
     }
 
 
@@ -52,7 +58,6 @@ public class bruh extends OpMode {
 
 
         if (gamepad2.right_bumper) {
-            wrist.setPosition(0.2);
             erect.setTargetPosition(2500);
             erect.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             if (erect.getCurrentPosition() < 2600 && erect.getCurrentPosition() > 2300) {
@@ -64,7 +69,7 @@ public class bruh extends OpMode {
 
 
             } else if (gamepad2.left_bumper) {
-                wrist.setPosition(0.2);
+
                 erect.setTargetPosition(100);
                 erect.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 if (erect.getCurrentPosition() < 200 && erect.getCurrentPosition() > 50) {
@@ -104,10 +109,7 @@ public class bruh extends OpMode {
             }
 
 
-            // if (gamepad1.left_bumper){
-            //      erect.setPower(-1);
-            //} else {
-            //erect.setPower(0);
+
 
 
             if (gamepad1.dpad_down) {
@@ -120,14 +122,18 @@ public class bruh extends OpMode {
 
             if (gamepad1.b) {
 
-                wrist.setPosition(0);
-                intake.setPower(1);
+                wristL.setPosition(0);
+                wristR.setPosition(1);
+                intakeL.setPower(-1);
+                intakeR.setPower(1);
             } else if (gamepad1.y) {
-                intake.setPower(1);
+                intakeL.setPower(1);
+                intakeR.setPower(-1);
             } else {
-
-                wrist.setPosition(0.4);
-                intake.setPower(0);
+                wristR.setPosition(0.25);
+                wristL.setPosition(0.75);
+                intakeR.setPower(0);
+                intakeL.setPower(0);
             }
 
 
