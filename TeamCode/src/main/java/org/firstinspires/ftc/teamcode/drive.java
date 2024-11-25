@@ -49,7 +49,7 @@ public class drive {
 
     public void teleop(Gamepad gamepad1, boolean mode) {
         double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
-        double x = -gamepad1.left_stick_x;
+        double x = gamepad1.left_stick_x;
         double rx = -gamepad1.right_stick_x ;
 
         if (gamepad1.options) {
@@ -83,10 +83,10 @@ public class drive {
         }
 
         double denominator = Math.max(Math.abs(ySpeed) + Math.abs(xSpeed) + Math.abs(rot), 1);
-        double frontLeftPower = (rotY + rotX + rot) / denominator;
-        double backLeftPower = (rotY - rotX + rot) / denominator;
-        double frontRightPower = (rotY - rotX - rot) / denominator;
-        double backRightPower = (rotY + rotX - rot) / denominator;
+        double frontLeftPower = (rotY + (-rotX) + rot) / denominator;
+        double backLeftPower = (rotY - (-rotX) + rot) / denominator;
+        double frontRightPower = (rotY - (-rotX) - rot) / denominator;
+        double backRightPower = (rotY + (-rotX) - rot) / denominator;
 
         setPower(frontLeftPower, backLeftPower, frontRightPower, backRightPower);
     }

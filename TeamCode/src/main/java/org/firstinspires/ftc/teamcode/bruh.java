@@ -122,8 +122,8 @@ public class bruh extends OpMode {
 
             if (gamepad1.b) {
 
-                wristL.setPosition(0);
-                wristR.setPosition(1);
+                wristL.setPosition(0.05);
+                wristR.setPosition(0.95);
                 intakeL.setPower(-1);
                 intakeR.setPower(1);
             } else if (gamepad1.y) {
@@ -145,7 +145,7 @@ public class bruh extends OpMode {
 
             } else {
 
-                extend.setPosition(0.35);
+                extend.setPosition(0.25);
             }
         }
     }
